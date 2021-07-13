@@ -84,9 +84,8 @@ export default {
             this.$store
                 .dispatch("reserve/getReservation")
                 .then((response) => {
-                    if (response.status !== 200 || response.data.error) {
+                    if (response.status !== 200 || response.data.error)
                         this.displaySuccessError(response);
-                    }
                 })
                 .catch((error) => {
                     this.displayErrors(error);
@@ -96,10 +95,10 @@ export default {
             this.$store
                 .dispatch("reserve/deleteReserve", { id: id })
                 .then((response) => {
-                    if (response.status !== 200 || response.data.error) {
-                        this.displaySuccessError(response);
-                    } else {
+                    if (response.status == 200 && !response.data.error) {
                         this.displaySuccess(response);
+                    } else {
+                        this.displaySuccessError(response);
                     }
                 })
                 .catch((error) => {
@@ -110,10 +109,10 @@ export default {
             this.$store
                 .dispatch("reserve/updateReserve", { id: reserve.id, data: { status: flg } })
                 .then((response) => {
-                    if (response.status !== 200 || response.data.error) {
-                        this.displaySuccessError(response);
-                    } else {
+                    if (response.status == 200 && !response.data.error) {
                         this.displaySuccess(response);
+                    } else {
+                        this.displaySuccessError(response);
                     }
                 })
                 .catch((error) => {

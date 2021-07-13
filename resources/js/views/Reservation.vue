@@ -167,11 +167,11 @@ export default {
             axios
                 .post(uri, this.reserve)
                 .then((response) => {
-                    if (response.status !== 200 || response.data.error) {
-                        this.displaySuccessError(response);
-                    } else {
+                    if (response.status == 200 && !response.data.error) {
                         this.displaySuccess(response);
                         e.target.reset();
+                    } else {
+                        this.displaySuccessError(response);
                     }
                 })
                 .catch((error) => {

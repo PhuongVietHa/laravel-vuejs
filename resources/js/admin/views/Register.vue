@@ -92,10 +92,10 @@ export default {
             await axios.get("/sanctum/csrf-cookie");
             await axios.post(process.env.MIX_BASE_URL + "/api/admin/register", values)
                     .then((response) => {
-                        if (response.status !== 200 || response.data.error) {
-                            this.displaySuccessError(response);
-                        } else {
+                        if (response.status == 200 && !response.data.error) {
                             window.location.href = process.env.MIX_BASE_URL + "/admin/login";
+                        } else {
+                            this.displaySuccessError(response);
                         }
                     })
                     .catch((error) => {

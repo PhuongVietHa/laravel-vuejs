@@ -128,7 +128,7 @@ export default {
     name: "NavHeader",
     created() {
         window.addEventListener("scroll", function () {
-            $(this).scrollTop() > $(".banner-area").height()
+            $(this).scrollTop() > $("#top-nav").height()
                 ? $("#header").addClass("fixed")
                 : $("#header").removeClass("fixed");
         });

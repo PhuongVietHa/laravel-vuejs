@@ -48,10 +48,10 @@ export default {
                 email: this.email,
                 password: this.password
             }).then(response => {
-                if (response.status !== 200 || response.data.error) {
-                    this.displaySuccessError(response);
-                } else {
+                if (response.status == 200 && !response.data.error) {
                     window.location.reload()
+                } else {
+                    this.displaySuccessError(response)
                 }
             }).catch(error=> {
                 this.displayErrors(error);

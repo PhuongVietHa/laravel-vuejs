@@ -75,7 +75,7 @@ export default {
     },
     created() {
         window.addEventListener("scroll", function () {
-            $(this).scrollTop() > $(".banner-area").height()
+            $(this).scrollTop() > $("#top-nav").height()
                 ? $("#header").addClass("fixed")
                 : $("#header").removeClass("fixed");
         });
@@ -97,10 +97,10 @@ export default {
             axios.get('/sanctum/csrf-cookie').then(response => {
                 axios.post(process.env.MIX_BASE_URL+'/api/admin/logout')
                     .then(response => {
-                        if (response.status !== 200 || response.data.error) {
-                            this.displaySuccessError(response);
-                        } else {
+                        if (response.status == 200 && !response.data.error) {
                             window.location.reload()
+                        } else {
+                            this.displaySuccessError(response);
                         }
                     })
                     .catch(function (error) {
